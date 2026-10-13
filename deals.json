@@ -14,7 +14,7 @@
    "instagram": "bar_1868",
    "address": "13 W High St",
    "ages": "unknown",
-   "age_note": "Was listed 21+ on an undated website. Not confirmed this fall.",
+   "age_note": "18+ with X's on Wednesdays (comedy or drag night). Other nights not confirmed.",
    "hours": {
     "tue": [
      "20:00",
@@ -38,7 +38,10 @@
     ]
    },
    "booking": null,
-   "notes": "Opening times from its 2026 Instagram bio; closing times not posted. Trivia Tue 9pm, comedy or drag Wed 9pm."
+   "notes": "Opening times from its 2026 Instagram bio; closing times not posted. Trivia Tue 9pm, comedy or drag Wed 9pm.",
+   "ages_by_day": {
+    "wed": "18+"
+   }
   },
   {
    "id": "brick-street",
@@ -62,8 +65,8 @@
    "line": "#b91c1c",
    "instagram": "chanks4dranks",
    "address": null,
-   "ages": "unknown",
-   "age_note": null,
+   "ages": "18+",
+   "age_note": "18+ get in with X's on their hands",
    "hours": {
     "sun": [
      "20:00",
@@ -105,7 +108,7 @@
    "line": "#7c3f1d",
    "instagram": "cornerbaroxford",
    "address": "12 E Park Pl",
-   "ages": "unknown",
+   "ages": "21+",
    "age_note": null,
    "hours": null,
    "booking": null,
@@ -154,8 +157,8 @@
    "line": "#0f766e",
    "instagram": "sidebar_thewoods_ox",
    "address": null,
-   "ages": "unknown",
-   "age_note": "Listed 21+ by The Miami Student in 2025. Not confirmed this fall.",
+   "ages": "21+",
+   "age_note": null,
    "hours": {
     "mon": [
      "20:00",

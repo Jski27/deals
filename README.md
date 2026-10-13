@@ -32,6 +32,7 @@ Edit `deals.json` and push. Each deal looks like:
 - `days` for weekly deals, or `date` (YYYY-MM-DD) for a one-night thing
 - `start` / `end` in 24h `HH:MM`; `steps` for clocks whose price changes over the night
 - `status`: `confirmed`, `needs_price`, `verify`, `one_off`
+- Ages are per bar (`ages`), with `ages_by_day` for nights that differ (Bar 1868 is 18+ on Wednesdays)
 - Rentals go in `closures`: `{ "date": "2026-10-17", "bar": "brick-street", "status": "confirmed", "note": "" }`
 
 ## Deploying

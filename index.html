@@ -234,8 +234,8 @@ function range(d) {
 }
 const shortDate = s => s ? new Date(s + "T12:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric" }) : "";
 const week = () => { const t = new Date(); t.setHours(0, 0, 0, 0); return [...Array(7)].map((_, i) => { const d = new Date(t); d.setDate(t.getDate() + i); return d; }); };
-const agesOf = d => d.ages || BARS[d.bar]?.ages || "unknown";
-const ageOK = d => state.age === "21" || agesOf(d) !== "21+";
+const barAges = (bar, date) => (date && bar.ages_by_day && bar.ages_by_day[DAY_KEYS[date.getDay()]]) || bar.ages || "unknown";
+const ageOK = (d, date) => state.age === "21" || barAges(BARS[d.bar], date) !== "21+";
 
 function dealsOn(date) {
   const k = DAY_KEYS[date.getDay()], s = iso(date);
@@ -268,8 +268,9 @@ function statusHTML(d) {
   return `<span class="st">Not recently confirmed</span>`;
 }
 const bullet = (bar, lg) => `<span class="bb${lg ? " lg" : ""}" style="background:${esc(bar.line || "#475569")}" aria-hidden="true">${esc(bar.initials || "")}</span>`;
-function ageBadge(bar) {
-  const a = bar.ages === "unknown" ? "Ages TBA" : bar.ages;
+function ageBadge(bar, date) {
+  const ages = barAges(bar, date);
+  const a = ages === "unknown" ? "Ages TBA" : ages;
   return `<span class="badge">${a}</span>`;
 }
 
@@ -277,7 +278,7 @@ function cardHTML(d, ctx) {
   const bar = BARS[d.bar], ls = liveState(d, ctx.isToday), closed = ctx.closed.has(d.bar);
   const cls = ["card", ls === "ended" ? "ended" : "", closed ? "closedbar" : ""].join(" ");
   return `<button class="${cls}" id="c-${d.id}" data-id="${d.id}">
-    <span class="row1">${bullet(bar)}${esc(bar.name)} ${ageBadge(bar)}${d.type !== "drink" ? `<span class="badge type">${TYPE_LABEL[d.type]}</span>` : ""}${ls === "live" && !closed ? `<span class="live">Live</span>` : ""}${closed ? `<span class="badge type">Rented out</span>` : ""}</span>
+    <span class="row1">${bullet(bar)}${esc(bar.name)} ${ageBadge(bar, ctx.date)}${d.type !== "drink" ? `<span class="badge type">${TYPE_LABEL[d.type]}</span>` : ""}${ls === "live" && !closed ? `<span class="live">Live</span>` : ""}${closed ? `<span class="badge type">Rented out</span>` : ""}</span>
     <span class="title">${esc(d.title)}</span>
     <span class="price ${d.price ? "" : "tba"}">${d.price ? esc(d.price) : "Price not posted yet"}</span>
     <span class="meta"><span>${range(d)}</span>${statusHTML(d)}</span>
@@ -288,7 +289,7 @@ function cardHTML(d, ctx) {
 function renderWeek() {
   const days = week();
   document.getElementById("week").innerHTML = days.map((d, i) => {
-    const n = dealsOn(d).filter(x => ageOK(x) && x.status !== "verify").length;
+    const n = dealsOn(d).filter(x => ageOK(x, d) && x.status !== "verify").length;
     return `<button class="dayb" id="d-${i}" data-i="${i}" aria-pressed="${i === state.sel}" aria-label="${DAY_LONG[d.getDay()]}, ${n} deals">
       <span class="dn">${i === 0 ? "Today" : DAY_LONG[d.getDay()].slice(0, 3)}</span>
       <span class="dd">${d.getDate()}</span>
@@ -299,9 +300,9 @@ function renderWeek() {
 
 function renderDay() {
   const date = week()[state.sel], isToday = state.sel === 0;
-  const all = dealsOn(date), shown = all.filter(ageOK), hidden21 = all.length - shown.length;
+  const all = dealsOn(date), shown = all.filter(x => ageOK(x, date)), hidden21 = all.length - shown.length;
   const fresh = shown.filter(d => d.status !== "verify"), older = shown.filter(d => d.status === "verify");
-  const closed = closedBars(date), ctx = { isToday, closed };
+  const closed = closedBars(date), ctx = { isToday, closed, date };
   const bars = new Set(fresh.map(d => d.bar));
   const label = isToday ? "Tonight" : state.sel === 1 ? "Tomorrow" : DAY_LONG[date.getDay()];
   const dateText = date.toLocaleDateString("en-US", { weekday: "long", month: "short", day: "numeric" });
@@ -329,7 +330,7 @@ function renderDay() {
   }
 
   if (!fresh.length) {
-    const days = week(), counts = days.map(d => dealsOn(d).filter(x => ageOK(x) && x.status !== "verify").length);
+    const days = week(), counts = days.map(d => dealsOn(d).filter(x => ageOK(x, d) && x.status !== "verify").length);
     const best = counts.indexOf(Math.max(...counts));
     h += `<div class="empty"><h3>Quiet night</h3><p>Nothing confirmed for ${DAY_LONG[date.getDay()]} yet. ${DAY_LONG[days[best].getDay()]} has the most going on this week.</p>${best !== state.sel ? `<button class="btn" id="jump" data-i="${best}">See ${DAY_LONG[days[best].getDay()]}</button>` : ""}</div>`;
   }
@@ -362,7 +363,7 @@ function openSheet(id) {
   const hrs = bar.hours && bar.hours[DAY_KEYS[date.getDay()]];
   const facts = [
     ["When", `${DAY_LONG[date.getDay()]} \u00b7 ${range(d)}`],
-    ["Entry", `${bar.ages === "unknown" ? "Age policy not confirmed" : bar.ages}${bar.age_note ? `. ${esc(bar.age_note)}` : ""}`],
+    ["Entry", `${barAges(bar, date) === "unknown" ? "Age policy not confirmed" : barAges(bar, date)}${bar.age_note ? `. ${esc(bar.age_note)}` : ""}`],
     hrs ? ["Bar hours", `${fmt(hrs[0])} to ${fmt(hrs[1])}`] : null,
     (d.type === "drink" || d.type === "clock") ? ["Drinks", "21+ with a valid ID"] : null,
     bar.address ? ["Where",`${esc(bar.address)}, Uptown`] : null,
@@ -371,14 +372,14 @@ function openSheet(id) {
     ["Source", `${SOURCE[d.source] || "Unknown"}${d.seen ? ` \u00b7 ${shortDate(d.seen)}` : ", undated"}`],
     ["Status", statusHTML(d)]
   ].filter(Boolean);
-  const others = dealsOn(date).filter(x => x.bar === d.bar && x.id !== d.id && ageOK(x));
+  const others = dealsOn(date).filter(x => x.bar === d.bar && x.id !== d.id && ageOK(x, date));
   sheet.innerHTML = `<div class="grab"></div>
-    <div class="sheettop"><span class="bar">${bullet(bar, true)}${esc(bar.name)} ${ageBadge(bar)}${ls === "live" ? `<span class="live">Live</span>` : ""}</span><button class="x" id="sheet-close" aria-label="Close">${ICON.x}</button></div>
+    <div class="sheettop"><span class="bar">${bullet(bar, true)}${esc(bar.name)} ${ageBadge(bar, date)}${ls === "live" ? `<span class="live">Live</span>` : ""}</span><button class="x" id="sheet-close" aria-label="Close">${ICON.x}</button></div>
     <div><h2 id="sheet-title">${esc(d.title)}</h2><div class="bigprice">${d.price ? esc(d.price) : "Price not posted yet"}</div></div>
     ${d.notes ? `<p class="notes">${esc(d.notes)}</p>` : ""}
     ${stepsH}
     <dl class="facts">${facts.map(([k, v]) => `<div class="fact"><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl>
-    ${others.length ? `<div class="more"><h4>ALSO AT ${esc(bar.name.toUpperCase())} ${DAY_LONG[date.getDay()].toUpperCase()}</h4><div class="cards">${others.map(o => cardHTML(o, { isToday, closed: closedBars(date) })).join("")}</div></div>` : ""}`;
+    ${others.length ? `<div class="more"><h4>ALSO AT ${esc(bar.name.toUpperCase())} ${DAY_LONG[date.getDay()].toUpperCase()}</h4><div class="cards">${others.map(o => cardHTML(o, { isToday, closed: closedBars(date), date })).join("")}</div></div>` : ""}`;
   lastFocus = document.activeElement;
   state.openId = id;
   wrap.hidden = false;
