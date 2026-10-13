@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>[hidden]{display:none!important}body{margin:0}</style>
+<title>Uptown Tonight</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Onest:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: a phone-first app column. Age switch, a 7-day strip, then the night split into time-of-day sections of tappable deal cards; tapping opens a bottom sheet. */
+/* Brand tokens: swap these to re-skin the whole app. */
+:root {
+  --bg: #f5f3f4;
+  --fill: #e9e5e7;
+  --surface: #ffffff;
+  --ink: #1b1618;
+  --muted: #7a6f73;
+  --line: #ebe5e7;
+  --accent: #d6293f;
+  --accent-soft: #fde8eb;
+  --on-accent: #ffffff;
+  --good: #1d8550;
+  --warn: #a8670f;
+  --scrim: rgba(20, 12, 15, .38);
+  --bullet-ring: rgba(255, 255, 255, 0);
+  --shadow: 0 1px 2px rgba(40, 20, 28, .06), 0 4px 14px rgba(40, 20, 28, .05);
+  --display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --body: "Onest", -apple-system, "Segoe UI", system-ui, sans-serif;
+  --r-card: 18px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111012; --fill: #221f22; --surface: #1b191c; --ink: #f4eff1; --muted: #a89da2; --line: #2b272b;
+    --accent: #ff5a6f; --accent-soft: #3a1c23; --on-accent: #1b0c10; --good: #4fd08a; --warn: #f0b552;
+    --scrim: rgba(0, 0, 0, .55); --shadow: 0 1px 2px rgba(0,0,0,.4); --bullet-ring: rgba(255, 255, 255, .16); color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111012; --fill: #221f22; --surface: #1b191c; --ink: #f4eff1; --muted: #a89da2; --line: #2b272b;
+  --accent: #ff5a6f; --accent-soft: #3a1c23; --on-accent: #1b0c10; --good: #4fd08a; --warn: #f0b552;
+  --scrim: rgba(0, 0, 0, .55); --shadow: 0 1px 2px rgba(0,0,0,.4); --bullet-ring: rgba(255, 255, 255, .16); color-scheme: dark;
+}
+.bb { flex: none; width: 20px; height: 20px; border-radius: 6px; display: inline-grid; place-items: center; color: #ffffff; font: 700 9.5px var(--display); letter-spacing: .01em; box-shadow: inset 0 0 0 1px var(--bullet-ring); }
+.bb.lg { width: 28px; height: 28px; border-radius: 8px; font-size: 12px; }
+.fact a { color: var(--accent); font-weight: 600; text-decoration: none; }
+.fact a:hover { text-decoration: underline; }
+
+* { box-sizing: border-box; }
+html, body { background: var(--bg); }
+body { color: var(--ink); font-family: var(--body); font-size: 15px; line-height: 1.45; -webkit-font-smoothing: antialiased; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.app { max-width: 560px; margin: 0 auto; padding-inline: 16px; padding-block: 18px 64px; display: grid; gap: 18px; }
+
+/* Header */
+.top { display: grid; gap: 14px; }
+.brand { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.where { font-size: 12.5px; font-weight: 600; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+.where .pin { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+h1 { font-family: var(--display); font-weight: 700; font-size: 2rem; line-height: 1; letter-spacing: -.02em; margin: 4px 0 0; }
+h1 em { font-style: normal; color: var(--accent); }
+
+.seg { display: grid; grid-template-columns: 1fr 1fr; background: var(--fill); border-radius: 12px; padding: 3px; gap: 3px; }
+.seg button { border: 0; background: transparent; border-radius: 9px; padding: 9px 0; font-weight: 500; font-size: 14px; color: var(--muted); cursor: pointer; transition: background .15s, color .15s; }
+.seg button[aria-pressed="true"] { background: var(--surface); color: var(--ink); font-weight: 600; box-shadow: var(--shadow); }
+
+/* Week strip */
+.week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
+.dayb { border: 0; background: var(--surface); border-radius: 14px; padding: 8px 0 7px; display: grid; justify-items: center; gap: 2px; cursor: pointer; box-shadow: var(--shadow); }
+.dayb .dn { font-size: 10.5px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
+.dayb .dd { font-family: var(--display); font-size: 1.15rem; font-weight: 700; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.dots { display: flex; gap: 3px; height: 5px; }
+.dots i { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
+.dayb[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+.dayb[aria-pressed="true"] .dn { color: var(--bg); opacity: .75; }
+
+/* Day summary */
+.dayhead { display: grid; gap: 2px; }
+.dayhead h2 { font-family: var(--display); font-size: 1.45rem; font-weight: 700; letter-spacing: -.015em; margin: 0; text-wrap: balance; }
+.dayhead p { margin: 0; color: var(--muted); font-size: 14px; }
+
+.notice { display: flex; align-items: center; justify-content: space-between; gap: 12px; background: var(--fill); border-radius: 14px; padding: 10px 12px 10px 14px; font-size: 13.5px; color: var(--muted); }
+.notice button { border: 0; background: var(--surface); border-radius: 999px; padding: 6px 12px; font-weight: 600; font-size: 13px; cursor: pointer; white-space: nowrap; color: var(--ink); }
+.notice.closed { background: var(--accent-soft); color: var(--ink); }
+
+/* Sections */
+.sections { display: grid; gap: 22px; }
+.sec { display: grid; gap: 10px; }
+.sechead { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; padding-inline: 2px; }
+.sechead h3 { margin: 0; font-size: 15px; font-weight: 700; }
+.sechead span { font-size: 12.5px; color: var(--muted); }
+.cards { display: grid; gap: 10px; }
+
+/* Deal card */
+.card { width: 100%; text-align: left; border: 0; background: var(--surface); border-radius: var(--r-card); padding: 14px 40px 14px 16px; box-shadow: var(--shadow); cursor: pointer; display: grid; gap: 3px; position: relative; transition: transform .12s ease; }
+.card:active { transform: scale(.985); }
+.card .chev { position: absolute; right: 14px; top: 50%; margin-top: -8px; width: 16px; height: 16px; color: var(--muted); }
+.card .row1 { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--muted); font-weight: 500; min-width: 0; flex-wrap: wrap; }
+.card .title { font-size: 16px; font-weight: 600; line-height: 1.3; }
+.card .price { font-size: 15px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.card .price.tba { color: var(--muted); font-weight: 500; }
+.card .meta { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 12.5px; color: var(--muted); margin-top: 3px; align-items: center; }
+.card.ended { opacity: .5; }
+.card.closedbar { opacity: .5; }
+
+.badge { font-size: 11px; font-weight: 600; padding: 1px 7px; border-radius: 999px; background: var(--fill); color: var(--muted); }
+.badge.type { background: var(--accent-soft); color: var(--accent); }
+.live { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 700; color: var(--on-accent); background: var(--accent); padding: 2px 8px 2px 7px; border-radius: 999px; }
+.live::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--on-accent); }
+@media (prefers-reduced-motion: no-preference) { .live::before { animation: pulse 1.6s ease-in-out infinite; } }
+@keyframes pulse { 50% { opacity: .35; } }
+
+.st { display: inline-flex; align-items: center; gap: 4px; }
+.st svg { width: 13px; height: 13px; }
+.st.ok { color: var(--good); }
+.st.tba { color: var(--warn); }
+
+details.older { background: transparent; }
+details.older summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 14px; background: var(--fill); font-size: 13.5px; color: var(--muted); font-weight: 500; }
+details.older summary::-webkit-details-marker { display: none; }
+details.older summary .tw { transition: transform .15s; width: 14px; height: 14px; }
+details.older[open] summary .tw { transform: rotate(90deg); }
+details.older .cards { margin-top: 10px; }
+.d21note { margin: 10px 2px 0; font-size: 13px; color: var(--muted); }
+details.older .card { box-shadow: none; border: 1px solid var(--line); }
+
+.empty { background: var(--surface); border-radius: var(--r-card); padding: 26px 20px; text-align: center; display: grid; gap: 10px; justify-items: center; box-shadow: var(--shadow); }
+.empty h3 { margin: 0; font-family: var(--display); font-size: 1.15rem; }
+.empty p { margin: 0; color: var(--muted); max-width: 34ch; }
+.btn { border: 0; background: var(--ink); color: var(--bg); border-radius: 999px; padding: 9px 16px; font-weight: 600; cursor: pointer; }
+
+footer { color: var(--muted); font-size: 12.5px; display: grid; gap: 4px; padding-inline: 2px; }
+
+/* Bottom sheet */
+.sheetwrap { position: fixed; inset: 0; z-index: 10; }
+.scrim { position: absolute; inset: 0; background: var(--scrim); opacity: 0; transition: opacity .2s ease; }
+.sheet { position: absolute; left: 0; right: 0; bottom: 0; margin: 0 auto; max-width: 560px; max-height: 86%; overflow-y: auto; background: var(--surface); border-radius: 24px 24px 0 0; padding: 8px 20px calc(28px + env(safe-area-inset-bottom, 0px)); transform: translateY(100%); transition: transform .26s cubic-bezier(.2,.8,.2,1); display: grid; gap: 16px; }
+.sheetwrap.open .scrim { opacity: 1; }
+.sheetwrap.open .sheet { transform: none; }
+@media (prefers-reduced-motion: reduce) { .scrim, .sheet { transition: none; } }
+.grab { width: 38px; height: 5px; border-radius: 3px; background: var(--fill); justify-self: center; }
+.sheettop { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.sheettop .bar { font-weight: 600; color: var(--muted); font-size: 13.5px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.x { border: 0; background: var(--fill); width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; cursor: pointer; flex: none; }
+.x svg { width: 14px; height: 14px; }
+.sheet h2 { font-family: var(--display); font-size: 1.6rem; line-height: 1.1; letter-spacing: -.015em; margin: 0; text-wrap: balance; }
+.bigprice { font-size: 1.2rem; font-weight: 700; margin-top: 6px; font-variant-numeric: tabular-nums; }
+.facts { display: grid; gap: 0; border-radius: 14px; background: var(--bg); }
+.fact { display: grid; grid-template-columns: 92px 1fr; gap: 10px; padding: 11px 14px; font-size: 14px; }
+.fact + .fact { border-top: 1px solid var(--line); }
+.fact dt { color: var(--muted); }
+.fact dd { margin: 0; min-width: 0; }
+.steps { display: grid; gap: 0; }
+.steps h4, .more h4 { margin: 0 0 8px; font-size: 13px; font-weight: 700; color: var(--muted); letter-spacing: .02em; }
+.step { display: grid; grid-template-columns: 64px 1fr; gap: 10px; padding: 9px 0 9px 14px; border-left: 2px solid var(--line); position: relative; font-size: 14px; }
+.step::before { content: ""; position: absolute; left: -6px; top: 14px; width: 10px; height: 10px; border-radius: 50%; background: var(--surface); border: 2px solid var(--muted); }
+.step b { font-variant-numeric: tabular-nums; }
+.step.now { border-left-color: var(--accent); }
+.step.now::before { background: var(--accent); border-color: var(--accent); }
+.step.unknown { color: var(--muted); }
+.notes { margin: 0; font-size: 14.5px; color: var(--ink); }
+.more .cards { gap: 8px; }
+.more .card { box-shadow: none; background: var(--bg); padding-block: 11px; }
+</style>
+
+<div class="app">
+  <header class="top">
+    <div class="brand">
+      <div>
+        <div class="where"><span class="pin"></span>Uptown Oxford</div>
+        <h1>Uptown <em>Tonight</em></h1>
+      </div>
+    </div>
+    <div class="seg" role="group" aria-label="Your age">
+      <button id="age-u21" data-age="u21" aria-pressed="true">I'm 18 to 20</button>
+      <button id="age-21" data-age="21" aria-pressed="false">I'm 21+</button>
+    </div>
+  </header>
+
+  <nav class="week" id="week" aria-label="Pick a day"></nav>
+
+  <main id="day" aria-live="polite">
+    <div class="empty"><h3>Loading this week's deals</h3><p>Pulling specials for Brick, Corner, Skippers and the rest.</p></div>
+  </main>
+
+  <footer>
+    <div>Every drink special is 21+ with a valid ID. Bars marked 18+ let 18 to 20 year olds in with X's on their hands.</div>
+    <div>Prices change often. "Seen" dates show when a deal was last posted or spotted.</div>
+    <div id="updated"></div>
+  </footer>
+</div>
+
+<div class="sheetwrap" id="sheetwrap" hidden>
+  <div class="scrim" id="scrim"></div>
+  <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title"></div>
+</div>
+
+<script>
+const ICON = {
+  chev: '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l5 5-5 5"/></svg>',
+  check: '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5l3 3 6-7"/></svg>',
+  dash: '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 8h8"/></svg>',
+  x: '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 4l8 8M12 4l-8 8"/></svg>'
+};
+const DAY_KEYS = ["sun","mon","tue","wed","thu","fri","sat"];
+const DAY_LONG = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+const TYPE_LABEL = { drink: "Drinks", clock: "Clock", cover: "Cover", food: "Food", event: "Event" };
+const SOURCE = { bar_ig_post: "Bar's Instagram post", bar_ig_story: "Bar's Instagram story", oxfordbardeals_story: "@oxfordbardeals story", firsthand: "Spotted in person", web_article: "News article", bar_website: "Bar's website", bar_ig_bio: "Bar's Instagram bio" };
+const SECTIONS = [
+  { key: "day", title: "Daytime", sub: "Before 5pm" },
+  { key: "happy", title: "Happy hour", sub: "5 to 8pm" },
+  { key: "late", title: "Late night", sub: "8pm to close" },
+  { key: "any", title: "Any time", sub: "Times not posted" }
+];
+
+let DATA = null, BARS = {};
+const state = { age: "u21", sel: 0, openId: null };
+try { const a = localStorage.getItem("ut-age"); if (a === "21" || a === "u21") state.age = a; } catch (e) {}
+
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const pad = n => String(n).padStart(2, "0");
+const iso = d => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+const mins = t => { if (!t) return null; const [h, m] = t.split(":").map(Number); const v = h * 60 + m; return v < 360 ? v + 1440 : v; };
+function fmt(t) { const [h, m] = t.split(":").map(Number); const ap = h >= 12 && h < 24 ? "pm" : "am"; const hh = h % 12 || 12; return m ? `${hh}:${pad(m)}${ap}` : `${hh}${ap}`; }
+function range(d) {
+  if (d.all_day) return "All day";
+  if (d.start && d.end) { let a = fmt(d.start), b = fmt(d.end); if (a.slice(-2) === b.slice(-2)) a = a.slice(0, -2); return `${a} to ${b}`; }
+  if (d.start) return `From ${fmt(d.start)}`;
+  if (d.end) return `Until ${fmt(d.end)}`;
+  return "Time not posted";
+}
+const shortDate = s => s ? new Date(s + "T12:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric" }) : "";
+const week = () => { const t = new Date(); t.setHours(0, 0, 0, 0); return [...Array(7)].map((_, i) => { const d = new Date(t); d.setDate(t.getDate() + i); return d; }); };
+const agesOf = d => d.ages || BARS[d.bar]?.ages || "unknown";
+const ageOK = d => state.age === "21" || agesOf(d) !== "21+";
+
+function dealsOn(date) {
+  const k = DAY_KEYS[date.getDay()], s = iso(date);
+  return DATA.deals.filter(d => (d.days || []).includes(k) || d.date === s);
+}
+function bucket(d) {
+  if (d.all_day) return "any";
+  const s = mins(d.start), e = mins(d.end);
+  if (s != null) return s < 1020 ? "day" : s < 1200 ? "happy" : "late";
+  if (e != null) return e <= 1020 ? "day" : "happy";
+  return "any";
+}
+function liveState(d, isToday) {
+  if (!isToday) return null;
+  const n = new Date(), now = n.getHours() * 60 + n.getMinutes();
+  if (d.all_day) return now >= 660 ? "live" : null;
+  const s = mins(d.start); let e = mins(d.end);
+  if (e == null && s != null) e = 1560;
+  if (s != null && now < s) return null;
+  if (e != null && now >= e) return "ended";
+  if (s != null || (e != null && now >= 600)) return "live";
+  return null;
+}
+const closedBars = date => new Set((DATA.closures || []).filter(c => c.date === iso(date)).map(c => c.bar));
+
+function statusHTML(d) {
+  if (d.status === "confirmed") return `<span class="st ok">${ICON.check}Seen ${shortDate(d.seen)}</span>`;
+  if (d.status === "needs_price") return `<span class="st tba">${ICON.dash}Price TBA</span>`;
+  if (d.status === "one_off") return `<span class="st">One night only</span>`;
+  return `<span class="st">Not recently confirmed</span>`;
+}
+const bullet = (bar, lg) => `<span class="bb${lg ? " lg" : ""}" style="background:${esc(bar.line || "#475569")}" aria-hidden="true">${esc(bar.initials || "")}</span>`;
+function ageBadge(bar) {
+  const a = bar.ages === "unknown" ? "Ages TBA" : bar.ages;
+  return `<span class="badge">${a}</span>`;
+}
+
+function cardHTML(d, ctx) {
+  const bar = BARS[d.bar], ls = liveState(d, ctx.isToday), closed = ctx.closed.has(d.bar);
+  const cls = ["card", ls === "ended" ? "ended" : "", closed ? "closedbar" : ""].join(" ");
+  return `<button class="${cls}" id="c-${d.id}" data-id="${d.id}">
+    <span class="row1">${bullet(bar)}${esc(bar.name)} ${ageBadge(bar)}${d.type !== "drink" ? `<span class="badge type">${TYPE_LABEL[d.type]}</span>` : ""}${ls === "live" && !closed ? `<span class="live">Live</span>` : ""}${closed ? `<span class="badge type">Rented out</span>` : ""}</span>
+    <span class="title">${esc(d.title)}</span>
+    <span class="price ${d.price ? "" : "tba"}">${d.price ? esc(d.price) : "Price not posted yet"}</span>
+    <span class="meta"><span>${range(d)}</span>${statusHTML(d)}</span>
+    <span class="chev">${ICON.chev}</span>
+  </button>`;
+}
+
+function renderWeek() {
+  const days = week();
+  document.getElementById("week").innerHTML = days.map((d, i) => {
+    const n = dealsOn(d).filter(x => ageOK(x) && x.status !== "verify").length;
+    return `<button class="dayb" id="d-${i}" data-i="${i}" aria-pressed="${i === state.sel}" aria-label="${DAY_LONG[d.getDay()]}, ${n} deals">
+      <span class="dn">${i === 0 ? "Today" : DAY_LONG[d.getDay()].slice(0, 3)}</span>
+      <span class="dd">${d.getDate()}</span>
+      <span class="dots">${"<i></i>".repeat(Math.min(4, Math.ceil(n / 2)))}</span>
+    </button>`;
+  }).join("");
+}
+
+function renderDay() {
+  const date = week()[state.sel], isToday = state.sel === 0;
+  const all = dealsOn(date), shown = all.filter(ageOK), hidden21 = all.length - shown.length;
+  const fresh = shown.filter(d => d.status !== "verify"), older = shown.filter(d => d.status === "verify");
+  const closed = closedBars(date), ctx = { isToday, closed };
+  const bars = new Set(fresh.map(d => d.bar));
+  const label = isToday ? "Tonight" : state.sel === 1 ? "Tomorrow" : DAY_LONG[date.getDay()];
+  const dateText = date.toLocaleDateString("en-US", { weekday: "long", month: "short", day: "numeric" });
+
+  let h = `<div class="sections"><div class="dayhead"><h2>${label}</h2><p>${dateText} \u00b7 ${fresh.length ? `${fresh.length} deal${fresh.length > 1 ? "s" : ""} at ${bars.size} bar${bars.size > 1 ? "s" : ""}` : "No current deals tracked"}</p></div>`;
+
+  closed.forEach(b => { h += `<div class="notice closed"><span><b>${esc(BARS[b]?.name || b)}</b> is rented out for a private event. Closed to the public.</span></div>`; });
+  if (hidden21 && state.age === "u21") h += `<div class="notice"><span>${hidden21} more at 21+ bars</span><button id="show21" data-age="21">Show 21+</button></div>`;
+
+  const u21 = state.age === "u21";
+  const isDrink = d => d.type === "drink" || d.type === "clock";
+  const main = u21 ? fresh.filter(d => !isDrink(d)) : fresh;
+  const drinks21 = u21 ? fresh.filter(isDrink) : [];
+  const covers = main.filter(d => d.type === "cover");
+  if (covers.length) h += sec("At the door", "Covers", covers, ctx);
+  SECTIONS.forEach(s => {
+    const list = main.filter(d => d.type !== "cover" && bucket(d) === s.key).sort((a, b) => (mins(a.start) ?? mins(a.end) ?? 0) - (mins(b.start) ?? mins(b.end) ?? 0));
+    if (list.length) h += sec(s.title, s.sub, list, ctx);
+  });
+  if (u21 && fresh.length && !main.length) {
+    h += `<div class="empty"><h3>Mostly a 21+ night</h3><p>No covers, food or events posted yet for ${DAY_LONG[date.getDay()]} at bars you can get into.</p></div>`;
+  }
+  if (drinks21.length) {
+    h += `<details class="older" id="drinks21"><summary><span>${drinks21.length} drink special${drinks21.length > 1 ? "s" : ""}, 21+ with ID</span><svg class="tw" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 3l5 5-5 5"/></svg></summary><p class="d21note">You can get into 18+ bars with X's on your hands, but every drink special is 21+ with a valid ID.</p><div class="cards">${drinks21.map(d => cardHTML(d, ctx)).join("")}</div></details>`;
+  }
+
+  if (!fresh.length) {
+    const days = week(), counts = days.map(d => dealsOn(d).filter(x => ageOK(x) && x.status !== "verify").length);
+    const best = counts.indexOf(Math.max(...counts));
+    h += `<div class="empty"><h3>Quiet night</h3><p>Nothing confirmed for ${DAY_LONG[date.getDay()]} yet. ${DAY_LONG[days[best].getDay()]} has the most going on this week.</p>${best !== state.sel ? `<button class="btn" id="jump" data-i="${best}">See ${DAY_LONG[days[best].getDay()]}</button>` : ""}</div>`;
+  }
+  if (older.length) {
+    h += `<details class="older" id="older"><summary><span>${older.length} older report${older.length > 1 ? "s" : ""}, not recently confirmed</span><svg class="tw" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 3l5 5-5 5"/></svg></summary><div class="cards">${older.map(d => cardHTML(d, ctx)).join("")}</div></details>`;
+  }
+  h += `</div>`;
+  document.getElementById("day").innerHTML = h;
+}
+function sec(title, sub, list, ctx) {
+  return `<section class="sec"><div class="sechead"><h3>${title}</h3><span>${sub}</span></div><div class="cards">${list.map(d => cardHTML(d, ctx)).join("")}</div></section>`;
+}
+
+function render() { renderWeek(); renderDay(); syncAge(); }
+function syncAge() { document.querySelectorAll(".seg button").forEach(b => b.setAttribute("aria-pressed", b.dataset.age === state.age)); }
+function setAge(a) { state.age = a; try { localStorage.setItem("ut-age", a); } catch (e) {} render(); }
+
+/* Sheet */
+const wrap = document.getElementById("sheetwrap"), sheet = document.getElementById("sheet");
+let lastFocus = null;
+function openSheet(id) {
+  const d = DATA.deals.find(x => x.id === id); if (!d) return;
+  const bar = BARS[d.bar], date = week()[state.sel], isToday = state.sel === 0, ls = liveState(d, isToday);
+  const now = new Date(), nowM = now.getHours() * 60 + now.getMinutes();
+  let stepsH = "";
+  if (d.steps && d.steps.length) {
+    let cur = -1; if (ls === "live") d.steps.forEach((s, i) => { if (mins(s.at) <= nowM) cur = i; });
+    stepsH = `<div class="steps"><h4>HOW THE CLOCK RUNS</h4>${d.steps.map((s, i) => `<div class="step ${i === cur ? "now" : ""}"><b>${fmt(s.at)}</b><span>${esc(s.price)}${i === cur ? " \u00b7 now" : ""}</span></div>`).join("")}${d.status === "needs_price" ? `<div class="step unknown"><b>Later</b><span>Not posted yet</span></div>` : ""}</div>`;
+  }
+  const hrs = bar.hours && bar.hours[DAY_KEYS[date.getDay()]];
+  const facts = [
+    ["When", `${DAY_LONG[date.getDay()]} \u00b7 ${range(d)}`],
+    ["Entry", `${bar.ages === "unknown" ? "Age policy not confirmed" : bar.ages}${bar.age_note ? `. ${esc(bar.age_note)}` : ""}`],
+    hrs ? ["Bar hours", `${fmt(hrs[0])} to ${fmt(hrs[1])}`] : null,
+    (d.type === "drink" || d.type === "clock") ? ["Drinks", "21+ with a valid ID"] : null,
+    bar.address ? ["Where",`${esc(bar.address)}, Uptown`] : null,
+    bar.instagram ? ["Instagram", `<a href="https://www.instagram.com/${encodeURIComponent(bar.instagram)}/" target="_blank" rel="noopener">@${esc(bar.instagram)}</a>`] : null,
+    bar.booking ? ["Book it", esc(bar.booking)] : null,
+    ["Source", `${SOURCE[d.source] || "Unknown"}${d.seen ? ` \u00b7 ${shortDate(d.seen)}` : ", undated"}`],
+    ["Status", statusHTML(d)]
+  ].filter(Boolean);
+  const others = dealsOn(date).filter(x => x.bar === d.bar && x.id !== d.id && ageOK(x));
+  sheet.innerHTML = `<div class="grab"></div>
+    <div class="sheettop"><span class="bar">${bullet(bar, true)}${esc(bar.name)} ${ageBadge(bar)}${ls === "live" ? `<span class="live">Live</span>` : ""}</span><button class="x" id="sheet-close" aria-label="Close">${ICON.x}</button></div>
+    <div><h2 id="sheet-title">${esc(d.title)}</h2><div class="bigprice">${d.price ? esc(d.price) : "Price not posted yet"}</div></div>
+    ${d.notes ? `<p class="notes">${esc(d.notes)}</p>` : ""}
+    ${stepsH}
+    <dl class="facts">${facts.map(([k, v]) => `<div class="fact"><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl>
+    ${others.length ? `<div class="more"><h4>ALSO AT ${esc(bar.name.toUpperCase())} ${DAY_LONG[date.getDay()].toUpperCase()}</h4><div class="cards">${others.map(o => cardHTML(o, { isToday, closed: closedBars(date) })).join("")}</div></div>` : ""}`;
+  lastFocus = document.activeElement;
+  state.openId = id;
+  wrap.hidden = false;
+  requestAnimationFrame(() => { wrap.classList.add("open"); document.getElementById("sheet-close").focus(); });
+  sheet.scrollTop = 0;
+}
+function closeSheet() {
+  if (wrap.hidden) return;
+  wrap.classList.remove("open"); state.openId = null;
+  const done = () => { wrap.hidden = true; lastFocus && lastFocus.focus && lastFocus.focus(); };
+  matchMedia("(prefers-reduced-motion: reduce)").matches ? done() : setTimeout(done, 240);
+}
+
+document.addEventListener("click", e => {
+  const t = e.target.closest("button, #scrim"); if (!t) return;
+  if (t.id === "scrim" || t.id === "sheet-close") return closeSheet();
+  if (t.dataset.age) return setAge(t.dataset.age);
+  if (t.classList.contains("dayb") || t.id === "jump") { state.sel = +t.dataset.i; closeSheet(); return render(); }
+  if (t.classList.contains("card")) return openSheet(t.dataset.id);
+});
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeSheet(); });
+
+fetch("deals.json").then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(data => {
+  DATA = data; data.bars.forEach(b => BARS[b.id] = b);
+  document.getElementById("updated").textContent = `Deal list last updated ${shortDate(data.updated)}, ${new Date(data.updated + "T12:00:00").getFullYear()}.`;
+  render();
+}).catch(() => {
+  document.getElementById("day").innerHTML = `<div class="empty"><h3>Couldn't load deals</h3><p>The deal list didn't come through. Refresh the page to try again.</p></div>`;
+});
+</script>
+
+</html>

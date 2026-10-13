@@ -1,0 +1,1104 @@
+{
+ "version": 2,
+ "updated": "2026-10-13",
+ "city": "Oxford, OH",
+ "rule": "Only fall 2026 sources (Aug 15, 2026 onward).",
+ "policy": "Every drink special is 21+ with a valid ID. Bars marked 18+ let 18 to 20 year olds in with X's on their hands.",
+ "bars": [
+  {
+   "id": "bar-1868",
+   "name": "Bar 1868",
+   "nickname": "1868",
+   "initials": "18",
+   "line": "#475569",
+   "instagram": "bar_1868",
+   "address": "13 W High St",
+   "ages": "unknown",
+   "age_note": "Was listed 21+ on an undated website. Not confirmed this fall.",
+   "hours": {
+    "tue": [
+     "20:00",
+     "02:00"
+    ],
+    "wed": [
+     "20:00",
+     "02:00"
+    ],
+    "thu": [
+     "20:00",
+     "02:00"
+    ],
+    "fri": [
+     "18:00",
+     "02:00"
+    ],
+    "sat": [
+     "18:00",
+     "02:00"
+    ]
+   },
+   "booking": null,
+   "notes": "Opening times from its 2026 Instagram bio; closing times not posted. Trivia Tue 9pm, comedy or drag Wed 9pm."
+  },
+  {
+   "id": "brick-street",
+   "name": "Brick Street",
+   "nickname": "Brick",
+   "initials": "BS",
+   "line": "#c2410c",
+   "instagram": "brickstoxford",
+   "address": "36 E High St",
+   "ages": "18+",
+   "age_note": "18+ get in with X's on their hands",
+   "hours": null,
+   "booking": "brickstreet513@gmail.com",
+   "notes": "Barstool's Best Bar in the Midwest. Oxford won Barstool's Best College Town 2026. Instagram has a SPECIALS highlight."
+  },
+  {
+   "id": "chanks",
+   "name": "Chanks",
+   "nickname": "Chanks",
+   "initials": "CH",
+   "line": "#b91c1c",
+   "instagram": "chanks4dranks",
+   "address": null,
+   "ages": "unknown",
+   "age_note": null,
+   "hours": {
+    "sun": [
+     "20:00",
+     "02:30"
+    ],
+    "mon": [
+     "20:00",
+     "02:30"
+    ],
+    "tue": [
+     "20:00",
+     "02:30"
+    ],
+    "wed": [
+     "20:00",
+     "02:30"
+    ],
+    "thu": [
+     "16:00",
+     "02:30"
+    ],
+    "fri": [
+     "16:00",
+     "02:30"
+    ],
+    "sat": [
+     "12:00",
+     "02:30"
+    ]
+   },
+   "booking": null,
+   "notes": "Instagram page is named Pachinkos Oxford (@chanks4dranks)."
+  },
+  {
+   "id": "corner-bar",
+   "name": "Corner Bar",
+   "nickname": "Corner",
+   "initials": "CB",
+   "line": "#7c3f1d",
+   "instagram": "cornerbaroxford",
+   "address": "12 E Park Pl",
+   "ages": "unknown",
+   "age_note": null,
+   "hours": null,
+   "booking": null,
+   "notes": "Keeps per-day story highlights on Instagram."
+  },
+  {
+   "id": "lil-rudys",
+   "name": "Lil Rudys",
+   "nickname": "Rudy's",
+   "initials": "LR",
+   "line": "#881337",
+   "instagram": "lilrudysoxford.mu",
+   "address": "107 E Church St",
+   "ages": "21+",
+   "age_note": "Valid ID and a student ID",
+   "hours": {
+    "tue": [
+     "20:00",
+     "02:30"
+    ],
+    "wed": [
+     "20:00",
+     "02:30"
+    ],
+    "thu": [
+     "20:00",
+     "02:30"
+    ],
+    "fri": [
+     "12:00",
+     "02:30"
+    ],
+    "sat": [
+     "12:00",
+     "02:30"
+    ]
+   },
+   "booking": "lilrudys.com (Book an Event form)",
+   "notes": "Closed Sunday and Monday."
+  },
+  {
+   "id": "side-bar",
+   "name": "Side Bar / The Woods",
+   "nickname": "Side Bar",
+   "initials": "SB",
+   "line": "#0f766e",
+   "instagram": "sidebar_thewoods_ox",
+   "address": null,
+   "ages": "unknown",
+   "age_note": "Listed 21+ by The Miami Student in 2025. Not confirmed this fall.",
+   "hours": {
+    "mon": [
+     "20:00",
+     "02:00"
+    ],
+    "tue": [
+     "20:00",
+     "02:00"
+    ],
+    "wed": [
+     "20:00",
+     "02:00"
+    ],
+    "thu": [
+     "16:00",
+     "02:00"
+    ],
+    "fri": [
+     "14:00",
+     "02:00"
+    ],
+    "sat": [
+     "12:00",
+     "02:00"
+    ]
+   },
+   "booking": null,
+   "notes": "Its bio calls it New Bar. Open Sundays only on major weekends. Posts a Weekly To-Do in its story."
+  },
+  {
+   "id": "skippers",
+   "name": "Skippers Pub",
+   "nickname": "Skips",
+   "initials": "SK",
+   "line": "#1e3a8a",
+   "instagram": "skippers_pub",
+   "address": "121 E High St",
+   "ages": "18+",
+   "age_note": null,
+   "hours": null,
+   "booking": null,
+   "notes": "Restaurant downstairs, Top Deck bar upstairs."
+  },
+  {
+   "id": "opub",
+   "name": "O'Pub",
+   "nickname": "O'Pub",
+   "initials": "OP",
+   "line": "#15803d",
+   "instagram": "theoxfordpub",
+   "address": "10 W Park Pl",
+   "ages": "21+",
+   "age_note": "Its bio says 21+ and calls it the adult bar",
+   "hours": {
+    "mon": [
+     "16:00",
+     "02:30"
+    ],
+    "tue": [
+     "16:00",
+     "02:30"
+    ],
+    "wed": [
+     "16:00",
+     "02:30"
+    ],
+    "thu": [
+     "16:00",
+     "02:30"
+    ],
+    "fri": [
+     "16:00",
+     "02:30"
+    ],
+    "sat": [
+     "16:00",
+     "02:30"
+    ],
+    "sun": [
+     "20:00",
+     "02:30"
+    ]
+   },
+   "booking": null,
+   "notes": "Shares an events calendar with Sorriso Osteria + Bar."
+  },
+  {
+   "id": "calendula",
+   "name": "Calendula",
+   "nickname": "Calendula",
+   "initials": "CA",
+   "line": "#a16207",
+   "instagram": "dineatcalendula",
+   "address": null,
+   "ages": "21+",
+   "age_note": "Strictly 21+ to get in",
+   "hours": null,
+   "booking": null,
+   "notes": "Restaurant with a patio bar. Instagram has deals and hours highlights. Brick Street reshares its posts."
+  },
+  {
+   "id": "al-larrys",
+   "name": "Al & Larry's",
+   "nickname": "Al & Larry's",
+   "initials": "AL",
+   "line": "#6d28d9",
+   "instagram": "alandlarrys",
+   "address": "45 E High St",
+   "ages": "unknown",
+   "age_note": null,
+   "hours": null,
+   "booking": null,
+   "notes": "Smash burger and chicken sandwich restaurant."
+  }
+ ],
+ "deals": [
+  {
+   "id": "b1868-happy",
+   "bar": "bar-1868",
+   "type": "drink",
+   "title": "Happy hour",
+   "days": [
+    "fri",
+    "sat"
+   ],
+   "date": null,
+   "start": "18:00",
+   "end": "20:00",
+   "all_day": false,
+   "price": "$3 single wells · $3 domestic bottles",
+   "steps": [],
+   "status": "confirmed",
+   "source": "bar_ig_post",
+   "seen": "2026-09-04",
+   "notes": null
+  },
+  {
+   "id": "b1868-tue-trivia",
+   "bar": "bar-1868",
+   "type": "event",
+   "title": "Trivia",
+   "days": [
+    "tue"
+   ],
+   "date": null,
+   "start": "21:00",
+   "end": null,
+   "all_day": false,
+   "price": null,
+   "steps": [],
+   "status": "confirmed",
+   "source": "bar_ig_bio",
+   "seen": "2026-10-13",
+   "notes": "Doors at 8pm."
+  },
+  {
+   "id": "b1868-wed-show",
+   "bar": "bar-1868",
+   "type": "event",
+   "title": "Comedy or drag show",
+   "days": [
+    "wed"
+   ],
+   "date": null,
+   "start": "21:00",
+   "end": null,
+   "all_day": false,
+   "price": null,
+   "steps": [],
+   "status": "confirmed",
+   "source": "bar_ig_bio",
+   "seen": "2026-10-13",
+   "notes": "Doors at 8pm."
+  },
+  {
+   "id": "b1868-pitchers",
+   "bar": "bar-1868",
+   "type": "drink",
+   "title": "Draft pitchers",
+   "days": [],
+   "date": null,
+   "start": null,
+   "end": null,
+   "all_day": false,
+   "price": "$10",
+   "steps": [],
+   "status": "needs_price",
+   "source": "bar_ig_post",
+   "seen": "2026-09-06",
+   "notes": "Posted as a reel with no day listed."
+  },
+  {
+   "id": "brick-fri-beat",
+   "bar": "brick-street",
+   "type": "clock",
+   "title": "Friday Beat",
+   "days": [
+    "fri"
+   ],
+   "date": null,
+   "start": "13:00",
+   "end": null,
+   "all_day": false,
+   "price": null,
+   "steps": [],
+   "status": "needs_price",
+   "source": "bar_ig_story",
+   "seen": "2026-09-25",
+   "notes": "Shot and pitcher specials change every hour. No prices posted."
+  },
+  {
+   "id": "brick-sat-clock",
+   "bar": "brick-street",
+   "type": "clock",
+   "title": "Saturday Beat the Clock",
+   "days": [
+    "sat"
+   ],
+   "date": null,
+   "start": "13:00",
+   "end": null,
+   "all_day": false,
+   "price": "From $1 pitchers",
+   "steps": [
+    {
+     "at": "13:00",
+     "price": "$1 Natty Light pitchers"
+    },
+    {
+     "at": "14:00",
+     "price": "$2 pitchers and shots"
+    }
+   ],
+   "status": "needs_price",
+   "source": "firsthand",
+   "seen": "2026-09-26",
+   "notes": "Prices step up every hour. The ladder after 3pm is still unknown."
+  },
+  {
+   "id": "brick-cover",
+   "bar": "brick-street",
+   "type": "cover",
+   "title": "Cover",
+   "days": [
+    "thu",
+    "fri",
+    "sat"
+   ],
+   "date": null,
+   "start": null,
+   "end": null,
+   "all_day": false,
+   "price": "About $12 if you're 18 to 20",
+   "steps": [],
+   "status": "needs_price",
+   "source": "firsthand",
+   "seen": "2026-09-26",
+   "notes": "Thursday is ladies night with no cover for ladies. The 21+ cover amount is unknown."
+  },
+  {
+   "id": "chanks-tue-tourney",
+   "bar": "chanks",
+   "type": "drink",
+   "title": "Tourney Tuesday",
+   "days": [
+    "tue"
+   ],
+   "date": null,
+   "start": "20:00",
+   "end": null,
+   "all_day": false,
+   "price": "$4 bombs · $5 doubles · $5 High Life",
+   "steps": [],
+   "status": "confirmed",
+   "source": "bar_ig_story",
+   "seen": "2026-10-13",
+   "notes": "Doors at 8pm, pool tournament at 10pm."
+  },
+  {
+   "id": "chanks-sat-bomb",
+   "bar": "chanks",
+   "type": "clock",
+   "title": "Bomb the Clock",
+   "days": [
+    "sat"
+   ],
+   "date": null,
+   "start": "12:00",
+   "end": "13:00",
+   "all_day": false,
+   "price": "$1.25 bombs · $1 wells · $2 Surfsides",
+   "steps": [],
+   "status": "needs_price",
+   "source": "firsthand",
+   "seen": "2026-09-26",
+   "notes": "Chanks is selling Bomb the Clock shirts this fall (Aug 28 post). Still need to confirm the wells and Surfsides and what happens after 1pm."
+  },
+  {
+   "id": "corner-mon-ultra",
+   "bar": "corner-bar",
+   "type": "drink",
+   "title": "Mini Beer Monday: Mich Ultra drafts",
+   "days": [
+    "mon"
+   ],
+   "date": null,
+   "start": null,
+   "end": null,
+   "all_day": false,
+   "price": "$2",
+   "steps": [],
+   "status": "confirmed",
+   "source": "bar_ig_post",
+   "seen": "2026-09-01",
+   "notes": null
+  },
+  {
+   "id": "corner-mon-wine",
+   "bar": "corner-bar",
+   "type": "drink",
+   "title": "Mega Wine Monday",
+   "days": [
+    "mon"
+   ],
+   "date": null,
+   "start": null,
+   "end": null,
+   "all_day": false,
+   "price": "$14 bottles",
+   "steps": [],
+   "status": "confirmed",
+   "source": "bar_ig_post",
+   "seen": "2026-09-01",
+   "notes": null
+  },
+  {
+   "id": "corner-tue-doubles",
+   "bar": "corner-bar",
+   "type": "drink",
+   "title": "Doubles and Bud Light bottles",
+   "days": [
+    "tue"
+   ],
+   "date": null,
+   "start": "20:00",
+   "end": null,
+   "all_day": false,
+   "price": "$5 each",
+   "steps": [],
+   "status": "confirmed",
+   "source": "bar_ig_post",
+   "seen": "2026-09-01",
+   "notes": "Doors at 8pm."
+  },
+  {
+   "id": "corner-oct13-game",
+   "bar": "corner-bar",
+   "type": "drink",
+   "title": "Guardians game night",
+   "days": [],
+   "date": "2026-10-13",
+   "start": "20:00",
+   "end": null,
+   "all_day": false,
+   "price": "$14 wine bottles · $2 Mich Ultra drafts",
+   "steps": [],
+   "status": "one_off",
+   "source": "bar_ig_story",
+   "seen": "2026-10-13",
+   "notes": "Posted for the Guardians vs Rays playoff game. These are usually Monday deals."
+  },
+  {
+   "id": "corner-wed-drafts",
+   "bar": "corner-bar",
+   "type": "drink",
+   "title": "Drafts and Mom Waters",
+   "days": [
+    "wed"
+   ],
+   "date": null,
+   "start": null,
+   "end": null,
+   "all_day": false,
+   "price": "$5.50 each",
+   "steps": [],
+   "status": "confirmed",
+   "source": "bar_ig_post",
+   "seen": "2026-09-01",
+   "notes": null
+  },
+  {
+   "id": "corner-thufri-doubles",
+   "bar": "corner-bar",
+   "type": "drink",
+   "title": "Happy hour doubles",
+   "days": [
+    "thu",
+    "fri"
+   ],
+   "date": null,
+   "start": "17:00",
+   "end": "20:00",
+   "all_day": false,
+   "price": "$3",
+   "steps": [],
+   "status": "confirmed",
+   "source": "bar_ig_post",
+   "seen": "2026-09-01",
+   "notes": null
+  },
+  {
+   "id": "corner-thufri-tacos",
+   "bar": "corner-bar",
+   "type": "food",
+   "title": "Tacos",
+   "days": [
+    "thu",
+    "fri"
+   ],
+   "date": null,
+   "start": "17:00",
+   "end": "20:00",
+   "all_day": false,
+   "price": "$1.50",
+   "steps": [],
+   "status": "confirmed",
+   "source": "bar_ig_post",
+   "seen": "2026-09-01",
+   "notes": null
+  },
+  {
+   "id": "corner-sat-brunch",
+   "bar": "corner-bar",
+   "type": "drink",
+   "title": "Saturday brunch",
+   "days": [
+    "sat"
+   ],
+   "date": null,
+   "start": "12:00",
+   "end": "14:00",
+   "all_day": false,
+   "price": "$3 doubles · $14 mimosa bottles · free pancakes",
+   "steps": [],
+   "status": "confirmed",
+   "source": "bar_ig_post",
+   "seen": "2026-09-01",
+   "notes": null
+  },
+  {
+   "id": "rudys-tue-twosday",
+   "bar": "lil-rudys",
+   "type": "drink",
+   "title": "$2 Twosday",
+   "days": [
+    "tue"
+   ],
+   "date": null,
+   "start": "20:00",
+   "end": null,
+   "all_day": false,
+   "price": "$2 single wells · lemon drops · Fireball · Pink Whitney",
+   "steps": [],
+   "status": "confirmed",
+   "source": "bar_ig_post",
+   "seen": "2026-09-15",
+   "notes": null
+  },
+  {
+   "id": "rudys-tue-trivia",
+   "bar": "lil-rudys",
+   "type": "event",
+   "title": "Trivia Tuesday",
+   "days": [
+    "tue"
+   ],
+   "date": null,
+   "start": "20:30",
+   "end": "22:30",
+   "all_day": false,
+   "price": "Win a $25 gift card each round, $50 grand prize",
+   "steps": [],
+   "status": "confirmed",
+   "source": "bar_ig_post",
+   "seen": "2026-09-28",
+   "notes": "4 rounds. $2 Twosday deals still apply."
+  },
+  {
+   "id": "rudys-wed",
+   "bar": "lil-rudys",
+   "type": "drink",
+   "title": "Wine Down Wednesday",
+   "days": [
+    "wed"
+   ],
+   "date": null,
+   "start": "20:00",
+   "end": null,
+   "all_day": false,
+   "price": "$3 wells · $4 wine splits · $5 Surfsides",
+   "steps": [],
+   "status": "confirmed",
+   "source": "bar_ig_post",
+   "seen": "2026-09-15",
+   "notes": "$3 single wells, Happy Dads and lemon drops. $4 wine splits. $5 Surfsides, Super Lytes and Mom Waters."
+  },
+  {
+   "id": "rudys-thu",
+   "bar": "lil-rudys",
+   "type": "drink",
+   "title": "Thirsty Thursday",
+   "days": [
+    "thu"
+   ],
+   "date": null,
+   "start": "20:00",
+   "end": null,
+   "all_day": false,
+   "price": "$4 singles · $6 doubles · $12 fishbowls",
+   "steps": [],
+   "status": "confirmed",
+   "source": "bar_ig_post",
+   "seen": "2026-09-15",
+   "notes": "Also $2 Pink Whitney, $3 lemon drops, $5 cherry and grape bombs. Fishbowls are 32oz."
+  },
+  {
+   "id": "rudys-fri-flip",
+   "bar": "lil-rudys",
+   "type": "clock",
+   "title": "Flip It Friday",
+   "days": [
+    "fri"
+   ],
+   "date": null,
+   "start": "20:00",
+   "end": null,
+   "all_day": false,
+   "price": "$4 wells, dropping to $2",
+   "steps": [
+    {
+     "at": "20:00",
+     "price": "$4 single wells"
+    },
+    {
+     "at": "22:00",
+     "price": "$3 single wells"
+    },
+    {
+     "at": "00:00",
+     "price": "$2 single wells"
+    }
+   ],
+   "status": "confirmed",
+   "source": "bar_ig_post",
+   "seen": "2026-09-15",
+   "notes": "A reverse clock: wells drop $1 every 2 hours."
+  },
+  {
+   "id": "rudys-sat",
+   "bar": "lil-rudys",
+   "type": "drink",
+   "title": "Seltzer Saturday",
+   "days": [
+    "sat"
+   ],
+   "date": null,
+   "start": null,
+   "end": null,
+   "all_day": false,
+   "price": "$3 lemon drops · $3 and $5 seltzers",
+   "steps": [],
+   "status": "confirmed",
+   "source": "bar_ig_post",
+   "seen": "2026-09-15",
+   "notes": "$3 High Noon Tea, Mighty Swell and Happy Dad. $5 Long Drink, Surfside and Super Lyte."
+  },
+  {
+   "id": "side-mon-trivia",
+   "bar": "side-bar",
+   "type": "event",
+   "title": "Trivia with Paulie B",
+   "days": [
+    "mon"
+   ],
+   "date": null,
+   "start": "21:45",
+   "end": null,
+   "all_day": false,
+   "price": null,
+   "steps": [],
+   "status": "confirmed",
+   "source": "bar_ig_story",
+   "seen": "2026-10-13",
+   "notes": null
+  },
+  {
+   "id": "side-tue-tea",
+   "bar": "side-bar",
+   "type": "drink",
+   "title": "Tea Tuesday",
+   "days": [
+    "tue"
+   ],
+   "date": null,
+   "start": "20:00",
+   "end": null,
+   "all_day": false,
+   "price": "$5 Long Islands · $5 Arnold Palmers · $3 tea shots",
+   "steps": [],
+   "status": "confirmed",
+   "source": "bar_ig_story",
+   "seen": "2026-10-13",
+   "notes": "$3 green tea and white tea shots. Write anonymous tea on the table cards and they post it to their story."
+  },
+  {
+   "id": "side-wed-karaoke",
+   "bar": "side-bar",
+   "type": "event",
+   "title": "Karaoke with DJ Sergio",
+   "days": [
+    "wed"
+   ],
+   "date": null,
+   "start": "22:00",
+   "end": null,
+   "all_day": false,
+   "price": null,
+   "steps": [],
+   "status": "confirmed",
+   "source": "bar_ig_story",
+   "seen": "2026-10-13",
+   "notes": null
+  },
+  {
+   "id": "side-thu-frozen",
+   "bar": "side-bar",
+   "type": "drink",
+   "title": "Frozen drink happy hour",
+   "days": [
+    "thu"
+   ],
+   "date": null,
+   "start": "16:00",
+   "end": "19:00",
+   "all_day": false,
+   "price": null,
+   "steps": [],
+   "status": "needs_price",
+   "source": "bar_ig_story",
+   "seen": "2026-10-13",
+   "notes": "DJ Steve the Greek at 10pm."
+  },
+  {
+   "id": "side-fri-hotdog",
+   "bar": "side-bar",
+   "type": "drink",
+   "title": "Hot dog happy hour",
+   "days": [
+    "fri"
+   ],
+   "date": null,
+   "start": "14:00",
+   "end": "19:00",
+   "all_day": false,
+   "price": null,
+   "steps": [],
+   "status": "needs_price",
+   "source": "bar_ig_story",
+   "seen": "2026-10-13",
+   "notes": "DJ Sergio at 10pm."
+  },
+  {
+   "id": "side-sat-halfsy",
+   "bar": "side-bar",
+   "type": "clock",
+   "title": "Halfsy Hour",
+   "days": [
+    "sat"
+   ],
+   "date": null,
+   "start": "14:00",
+   "end": "15:00",
+   "all_day": false,
+   "price": null,
+   "steps": [],
+   "status": "needs_price",
+   "source": "bar_ig_story",
+   "seen": "2026-10-13",
+   "notes": "Joey saw a Broken Clock starting around 2pm on Sep 26. This may be the same special."
+  },
+  {
+   "id": "side-sat-hotdog",
+   "bar": "side-bar",
+   "type": "drink",
+   "title": "Hot dog happy hour",
+   "days": [
+    "sat"
+   ],
+   "date": null,
+   "start": "16:00",
+   "end": "19:00",
+   "all_day": false,
+   "price": null,
+   "steps": [],
+   "status": "needs_price",
+   "source": "bar_ig_story",
+   "seen": "2026-10-13",
+   "notes": "DJ Sergio at 10pm."
+  },
+  {
+   "id": "side-crown",
+   "bar": "side-bar",
+   "type": "event",
+   "title": "Crown Royal Big Rig night",
+   "days": [],
+   "date": "2026-09-25",
+   "start": "20:00",
+   "end": null,
+   "all_day": false,
+   "price": null,
+   "steps": [],
+   "status": "one_off",
+   "source": "bar_ig_story",
+   "seen": "2026-09-25",
+   "notes": "Live music at 10pm."
+  },
+  {
+   "id": "skippers-mon",
+   "bar": "skippers",
+   "type": "drink",
+   "title": "Martini Night",
+   "days": [
+    "mon"
+   ],
+   "date": null,
+   "start": null,
+   "end": null,
+   "all_day": false,
+   "price": "$4 double wells · $6 Ultra pitchers · $2.50 bottles",
+   "steps": [],
+   "status": "confirmed",
+   "source": "bar_ig_post",
+   "seen": "2026-10-02",
+   "notes": "$2.50 domestic bottles."
+  },
+  {
+   "id": "skippers-tue",
+   "bar": "skippers",
+   "type": "drink",
+   "title": "Tequila Tuesday",
+   "days": [
+    "tue"
+   ],
+   "date": null,
+   "start": null,
+   "end": null,
+   "all_day": false,
+   "price": "$2.50 tequila shots · $2.50 bottles · $7 Modelo pitchers",
+   "steps": [],
+   "status": "confirmed",
+   "source": "bar_ig_post",
+   "seen": "2026-10-13",
+   "notes": "From the Oct 2 weekly specials post. The $2.50 domestic bottles were reposted Oct 13."
+  },
+  {
+   "id": "skippers-wed",
+   "bar": "skippers",
+   "type": "drink",
+   "title": "Trivia night specials",
+   "days": [
+    "wed"
+   ],
+   "date": null,
+   "start": null,
+   "end": null,
+   "all_day": false,
+   "price": "$7 Ultra pitchers · $5.50 double wells · $9 Blue Knockout pitchers",
+   "steps": [],
+   "status": "confirmed",
+   "source": "bar_ig_post",
+   "seen": "2026-10-02",
+   "notes": null
+  },
+  {
+   "id": "skippers-thu",
+   "bar": "skippers",
+   "type": "drink",
+   "title": "Liquor Pitcher Night",
+   "days": [
+    "thu"
+   ],
+   "date": null,
+   "start": null,
+   "end": null,
+   "all_day": false,
+   "price": "$9 liquor pitchers",
+   "steps": [],
+   "status": "confirmed",
+   "source": "bar_ig_post",
+   "seen": "2026-10-02",
+   "notes": null
+  },
+  {
+   "id": "skippers-weekend",
+   "bar": "skippers",
+   "type": "drink",
+   "title": "Weekend specials",
+   "days": [
+    "fri",
+    "sat"
+   ],
+   "date": null,
+   "start": null,
+   "end": "17:00",
+   "all_day": false,
+   "price": "$29.99 mimosa towers · $4 Coronas · $6 Bloody Marys",
+   "steps": [],
+   "status": "confirmed",
+   "source": "bar_ig_post",
+   "seen": "2026-10-02",
+   "notes": "Until 5pm. In late September these ran until 4pm on Fridays."
+  },
+  {
+   "id": "opub-oct14",
+   "bar": "opub",
+   "type": "event",
+   "title": "Wine Night with Jack Levine",
+   "days": [],
+   "date": "2026-10-14",
+   "start": "21:00",
+   "end": null,
+   "all_day": false,
+   "price": null,
+   "steps": [],
+   "status": "one_off",
+   "source": "oxfordbardeals_story",
+   "seen": "2026-10-12",
+   "notes": null
+  },
+  {
+   "id": "opub-oct15",
+   "bar": "opub",
+   "type": "event",
+   "title": "The Rafters live",
+   "days": [],
+   "date": "2026-10-15",
+   "start": "22:00",
+   "end": null,
+   "all_day": false,
+   "price": null,
+   "steps": [],
+   "status": "one_off",
+   "source": "oxfordbardeals_story",
+   "seen": "2026-10-12",
+   "notes": null
+  },
+  {
+   "id": "opub-oct16",
+   "bar": "opub",
+   "type": "event",
+   "title": "Disband live",
+   "days": [],
+   "date": "2026-10-16",
+   "start": "22:00",
+   "end": null,
+   "all_day": false,
+   "price": null,
+   "steps": [],
+   "status": "one_off",
+   "source": "oxfordbardeals_story",
+   "seen": "2026-10-12",
+   "notes": null
+  },
+  {
+   "id": "opub-oct17",
+   "bar": "opub",
+   "type": "event",
+   "title": "Parents Weekend party",
+   "days": [],
+   "date": "2026-10-17",
+   "start": "15:00",
+   "end": null,
+   "all_day": false,
+   "price": null,
+   "steps": [],
+   "status": "one_off",
+   "source": "oxfordbardeals_story",
+   "seen": "2026-10-12",
+   "notes": null
+  },
+  {
+   "id": "opub-oct18",
+   "bar": "opub",
+   "type": "drink",
+   "title": "All night happy hour",
+   "days": [],
+   "date": "2026-10-18",
+   "start": "20:00",
+   "end": null,
+   "all_day": false,
+   "price": null,
+   "steps": [],
+   "status": "one_off",
+   "source": "oxfordbardeals_story",
+   "seen": "2026-10-12",
+   "notes": null
+  },
+  {
+   "id": "calendula-tue",
+   "bar": "calendula",
+   "type": "drink",
+   "title": "Half-price Tuesday",
+   "days": [
+    "tue"
+   ],
+   "date": null,
+   "start": null,
+   "end": "21:00",
+   "all_day": false,
+   "price": "Half off wells, Hugo Spritz and margs",
+   "steps": [],
+   "status": "confirmed",
+   "source": "oxfordbardeals_story",
+   "seen": "2026-10-13",
+   "notes": "Every Tuesday until 9pm, on the patio."
+  },
+  {
+   "id": "allarrys-oct13",
+   "bar": "al-larrys",
+   "type": "food",
+   "title": "Guardians watch party combo",
+   "days": [],
+   "date": "2026-10-13",
+   "start": "20:00",
+   "end": null,
+   "all_day": false,
+   "price": "$9.95 burger, fries and a drink",
+   "steps": [],
+   "status": "one_off",
+   "source": "bar_ig_story",
+   "seen": "2026-10-13",
+   "notes": "Wear Guardians gear to get the deal."
+  }
+ ],
+ "closures": []
+}
