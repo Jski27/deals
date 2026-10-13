@@ -124,6 +124,22 @@ details.older summary::-webkit-details-marker { display: none; }
 details.older summary .tw { transition: transform .15s; width: 14px; height: 14px; }
 details.older[open] summary .tw { transform: rotate(90deg); }
 details.older .cards { margin-top: 10px; }
+/* Clock crawl: the night as a route */
+.route { background: var(--surface); border-radius: var(--r-card); box-shadow: var(--shadow); padding: 14px 16px 4px; display: grid; gap: 12px; }
+.route .sechead { padding: 0; }
+details .route { box-shadow: none; border: 1px solid var(--line); margin-top: 10px; }
+.stops { display: grid; }
+.stop { display: grid; grid-template-columns: 46px 18px minmax(0, 1fr); gap: 8px; width: 100%; text-align: left; border: 0; background: transparent; padding: 0; cursor: pointer; color: inherit; }
+.stop .tm { font-size: 12.5px; font-weight: 700; padding-top: 2px; font-variant-numeric: tabular-nums; }
+.stop .rail { position: relative; display: grid; justify-items: center; align-content: start; }
+.stop .seg { position: absolute; top: 12px; bottom: -6px; width: 5px; border-radius: 3px; }
+.stop .disc { position: relative; width: 15px; height: 15px; border-radius: 50%; background: var(--surface); border: 3px solid; margin-top: 2px; }
+.stop .disc.now { background: var(--accent); border-color: var(--accent) !important; }
+.stop .what { display: grid; gap: 1px; padding-bottom: 14px; min-width: 0; }
+.stop .bar { display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--muted); font-weight: 500; }
+.stop .t { font-weight: 600; font-size: 15px; }
+.stop .p { font-size: 13.5px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.stop .p.tba { color: var(--muted); font-weight: 500; }
 .d21note { margin: 10px 2px 0; font-size: 13px; color: var(--muted); }
 details.older .card { box-shadow: none; border: 1px solid var(--line); }
 
@@ -316,6 +332,7 @@ function renderDay() {
   const isDrink = d => d.type === "drink" || d.type === "clock";
   const main = u21 ? fresh.filter(d => !isDrink(d)) : fresh;
   const drinks21 = u21 ? fresh.filter(isDrink) : [];
+  if (!u21) h += crawlHTML(fresh, ctx);
   const covers = main.filter(d => d.type === "cover");
   if (covers.length) h += sec("At the door", "Covers", covers, ctx);
   SECTIONS.forEach(s => {
@@ -326,7 +343,7 @@ function renderDay() {
     h += `<div class="empty"><h3>Mostly a 21+ night</h3><p>No covers, food or events posted yet for ${DAY_LONG[date.getDay()]} at bars you can get into.</p></div>`;
   }
   if (drinks21.length) {
-    h += `<details class="older" id="drinks21"><summary><span>${drinks21.length} drink special${drinks21.length > 1 ? "s" : ""}, 21+ with ID</span><svg class="tw" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 3l5 5-5 5"/></svg></summary><p class="d21note">You can get into 18+ bars with X's on your hands, but every drink special is 21+ with a valid ID.</p><div class="cards">${drinks21.map(d => cardHTML(d, ctx)).join("")}</div></details>`;
+    h += `<details class="older" id="drinks21"><summary><span>${drinks21.length} drink special${drinks21.length > 1 ? "s" : ""}, 21+ with ID</span><svg class="tw" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 3l5 5-5 5"/></svg></summary><p class="d21note">You can get into 18+ bars with X's on your hands, but every drink special is 21+ with a valid ID.</p>${crawlHTML(drinks21, ctx)}<div class="cards">${drinks21.map(d => cardHTML(d, ctx)).join("")}</div></details>`;
   }
 
   if (!fresh.length) {
@@ -339,6 +356,15 @@ function renderDay() {
   }
   h += `</div>`;
   document.getElementById("day").innerHTML = h;
+}
+function crawlHTML(list, ctx) {
+  const stops = list.filter(d => d.start && (d.type === "clock" || (d.type === "drink" && mins(d.start) < 1020)))
+    .sort((a, b) => mins(a.start) - mins(b.start));
+  if (stops.length < 2) return "";
+  return `<section class="route" aria-label="Clock crawl"><div class="sechead"><h3>Clock crawl</h3><span>Clocks and early specials, in order</span></div><div class="stops">${stops.map((d, i) => {
+    const bar = BARS[d.bar], line = esc(bar.line || "#475569"), now = liveState(d, ctx.isToday) === "live";
+    return `<button class="stop" id="s-${d.id}" data-id="${d.id}"><span class="tm">${fmt(d.start)}</span><span class="rail">${i < stops.length - 1 ? `<span class="seg" style="background:${line}"></span>` : ""}<span class="disc${now ? " now" : ""}" style="border-color:${line}"></span></span><span class="what"><span class="bar">${bullet(bar)}${esc(bar.name)}</span><span class="t">${esc(d.title)}</span><span class="p${d.price ? "" : " tba"}">${d.price ? esc(d.price) : "Price not posted yet"}</span></span></button>`;
+  }).join("")}</div></section>`;
 }
 function sec(title, sub, list, ctx) {
   return `<section class="sec"><div class="sechead"><h3>${title}</h3><span>${sub}</span></div><div class="cards">${list.map(d => cardHTML(d, ctx)).join("")}</div></section>`;
@@ -399,6 +425,7 @@ document.addEventListener("click", e => {
   if (t.dataset.age) return setAge(t.dataset.age);
   if (t.classList.contains("dayb") || t.id === "jump") { state.sel = +t.dataset.i; closeSheet(); return render(); }
   if (t.classList.contains("card")) return openSheet(t.dataset.id);
+  if (t.classList.contains("stop")) return openSheet(t.dataset.id);
 });
 document.addEventListener("keydown", e => { if (e.key === "Escape") closeSheet(); });
 
